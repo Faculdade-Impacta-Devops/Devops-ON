@@ -67,7 +67,7 @@
 		<repository>
 			<id>github</id>
 			<name>GitHub Packages</name>
-			<url>https://maven.pkg.github.com/FabianoCarneiro/Devops-ON</url>
+			<url>https://maven.pkg.github.com/Faculdade-Impacta-Devops/Devops-ON</url>
 		</repository>
 	</distributionManagement>
 	<build>
