@@ -25,7 +25,7 @@ jobs:
       with:
         name: jacoco-report
         path: target/site/jacoco/
-        
+
   code-analisys:
     runs-on: ubuntu-latest
     needs: unit-test
@@ -58,7 +58,8 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN_IMPACTA }}
       run: mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=devopsfiap_devopsimpacta
-       
+
+
   build:
     runs-on: ubuntu-latest
     needs: code-analisys
@@ -69,29 +70,10 @@ jobs:
     
     - name: Package
       run: mvn package  
-         
-  publish:
-    runs-on: ubuntu-latest
-    needs: build
-    permissions:
-      contents: read
-      packages: write
-    steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-java@v3
-        with:
-          java-version: '11'
-          distribution: 'adopt'
-          package: '*.jar'
-      - name: Publish package
-        run: mvn --batch-mode deploy
-        env:
-
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}   
    
   deploy-STG:
     runs-on: ubuntu-latest
-    needs: publish
+    needs: build
     environment:
       name: stg
     
@@ -131,7 +113,7 @@ jobs:
     if: github.ref == 'refs/heads/release'
     environment:
       name: pre
-    needs: publish
+    needs: build
     steps:
       - name: Deploy 
         shell: bash
@@ -168,7 +150,7 @@ jobs:
     if: github.ref == 'refs/heads/main'
     environment:
       name: prod
-    needs: publish
+    needs: build
     steps:
       - name: Deploy 
         shell: bash
