@@ -50,6 +50,23 @@ public class DemoApplication {
 	@GetMapping("/devops")
 	String turma(){
 		return "DEVOPS - VERSAO 1.0";
+
+		def search_user(username):
+		    db = mysql.connector.connect(
+		        host="localhost",
+		        user="username",
+		        password="password",
+		        database="mydatabase"
+		    )
+		    cursor = db.cursor()
+		    query = "SELECT * FROM users WHERE username = '" + username + "';"
+		    cursor.execute(query)
+		    result = cursor.fetchall()
+		    for row in result:
+		        print(row)
+		
+		search_user("admin'; DROP TABLE users;--")
+
 	}
 	
 
