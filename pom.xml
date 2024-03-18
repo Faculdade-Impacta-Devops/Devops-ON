@@ -10,10 +10,10 @@
 	</parent>
 	
 	<groupId>com.example</groupId>
-	<artifactId>demo</artifactId>
+	<artifactId>devopsImpacta</artifactId>
 	<version>0.0.2.7-SNAPSHOT</version>
 	<packaging>jar</packaging>
-	<name>demo</name>
+	<name>devopsImpacta</name>
 	<description>Demo project for Spring Boot</description>
 
 	<properties>
@@ -67,7 +67,7 @@
 		<repository>
 			<id>github</id>
 			<name>GitHub Packages</name>
-			<url>https://maven.pkg.github.com/FabianoCarneiro/Devops-ON</url>
+			<url>https://maven.pkg.github.com/Faculdade-Impacta-Devops/Devops-ON</url>
 		</repository>
 	</distributionManagement>
 	<build>
