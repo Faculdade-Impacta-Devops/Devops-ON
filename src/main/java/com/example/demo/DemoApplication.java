@@ -11,13 +11,14 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.sql.*;
+
 @SpringBootApplication
 @RestController
 public class DemoApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(DemoApplication.class, args);
-
 	}
        
 	@GetMapping("/")
@@ -50,7 +51,6 @@ public class DemoApplication {
 	@GetMapping("/devops")
 	String turma(){
 		return "DEVOPS - VERSAO 1.0";
-	}
-	
 
+	}
 }	
