@@ -20,19 +20,24 @@ public class DemoApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(DemoApplication.class, args);
 
-		String userInput = args[0];
-
-	    	Statement statement = connection.createStatement();
-	        
-	    	String query = "SELECT * FROM usuarios WHERE nome = '" + userInput + "'";
+	        try (Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/banco", "usuario", "senha")) {
+	            Statement statement = connection.createStatement();
 	            
-	    	ResultSet resultSet = statement.executeQuery(query);
-
-	   	 while (resultSet.next()) {
-			String nome = resultSet.getString("nome");
-			String email = resultSet.getString("email");
-			System.out.println("Nome: " + nome + ", Email: " + email);
-	   	 }
+	            // Consulta SQL vulnerável à injeção
+	            String query = "SELECT * FROM usuarios WHERE nome = '" + userInput + "'";
+	            
+	            // Execução da consulta
+	            ResultSet resultSet = statement.executeQuery(query);
+	
+	            // Processamento dos resultados
+	            while (resultSet.next()) {
+	                String nome = resultSet.getString("nome");
+	                String email = resultSet.getString("email");
+	                System.out.println("Nome: " + nome + ", Email: " + email);
+	            }
+	        } catch (SQLException e) {
+	            e.printStackTrace();
+	        }
 	}
        
 	@GetMapping("/")
