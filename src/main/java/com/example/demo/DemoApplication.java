@@ -18,7 +18,7 @@ public class DemoApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(DemoApplication.class, args);
 
-		String userInput = args[0]; // Supondo que userInput seja a entrada do usuário
+		String userInput = args[0];
 
 	    	Statement statement = connection.createStatement();
 	        
