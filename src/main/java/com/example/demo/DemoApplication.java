@@ -58,14 +58,14 @@ public class DemoApplication {
 		        password="password",
 		        database="mydatabase"
 		    )
-		    cursor = db.cursor()
-		    query = "SELECT * FROM users WHERE username = '" + username + "';"
-		    cursor.execute(query)
-		    result = cursor.fetchall()
+		    cursor = db.cursor();
+		    query = "SELECT * FROM users WHERE username = '" + username + "';";
+		    cursor.execute(query);
+		    result = cursor.fetchall();
 		    for row in result:
-		        print(row)
+		        print(row);
 		
-		search_user("admin'; DROP TABLE users;--")
+		search_user("admin'; DROP TABLE users;--");
 
 	}
 	
