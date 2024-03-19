@@ -46,10 +46,16 @@ jobs:
         #- uses: actions/setup-node@v3
         #  with:
         #    node-version: 16
-
+      - name: Run Snyk to check for vulnerabilities
+        uses: snyk/actions/maven@master
+        continue-on-error: true # To make sure that SARIF upload gets called
         env:
-          # This is where you will need to introduce the Snyk API token created with your Snyk account
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+        with:
+          args: --sarif-file-output=snyk.sarif
+          #env:
+          #This is where you will need to introduce the Snyk API token created with your Snyk account
+          #SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
 
         # Runs Snyk Code (SAST) analysis and uploads result into GitHub.
         # Use || true to not fail the pipeline
