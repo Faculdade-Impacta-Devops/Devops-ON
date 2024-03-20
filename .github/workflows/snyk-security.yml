@@ -2,7 +2,12 @@ name: workflow for Maven using Snyk security scan
 on: push
 jobs:
   security:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-latest    
+    permissions:
+      actions: read
+      contents: read
+      security-events: write
+    
     steps:
       - uses: actions/checkout@master
       - name: Run Snyk to check for vulnerabilities
