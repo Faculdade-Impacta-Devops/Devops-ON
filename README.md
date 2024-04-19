@@ -4,6 +4,6 @@
 
 Versao FeatureProf Impacta
 
-Versao FeatureProf 1.1.5
+Versao FeatureProf 1.1.6
 
 
