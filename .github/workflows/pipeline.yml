@@ -4,8 +4,8 @@ on:
   push:
     branches:
       - develop
-      - internal/*
-      - external/*
+      - FeatureInteno/*
+      - FeatureExterno/*
 
 jobs:
   unit-test:
@@ -52,25 +52,25 @@ jobs:
         run: |
           echo "Deploying to STG environment"
 
-  deploy-Internal:
+  deploy-FeatureInteno:
     runs-on: ubuntu-latest
     needs: build
-    if: startsWith(github.ref, 'refs/heads/internal/')
+    if: startsWith(github.ref, 'refs/heads/FeatureInteno/')
     steps:
-      - name: Deploy to Internal Resource
+      - name: Deploy to FeatureInteno Resource
         shell: bash
         run: |
-          echo "Deploying to Internal Resource based on internal branch strategy"
-          # Adicione os passos para o recurso interno aqui
+          echo "Deploying to FeatureInteno Resource based on FeatureInteno branch strategy"
+          # Adicione os passos para o recurso FeatureInteno aqui
 
-  deploy-External:
+  deploy-FeatureExterno:
     runs-on: ubuntu-latest
     needs: build
-    if: startsWith(github.ref, 'refs/heads/external/')
+    if: startsWith(github.ref, 'refs/heads/FeatureExterno/')
     steps:
-      - name: Notify internal team for evaluation
+      - name: Notify FeatureInteno team for evaluation
         run: |
-          echo "Notifying internal team for evaluation of branch ${{ github.ref }}"
+          echo "Notifying FeatureInteno team for evaluation of branch ${{ github.ref }}"
           # Aqui você pode integrar com uma ferramenta de comunicação como Slack ou Email para notificação
 
       - name: Wait for approval
@@ -80,15 +80,15 @@ jobs:
           approvers: user1,user2,user3  # Substitua pelos usuários que podem aprovar
           # opcional: Adicione uma mensagem personalizada e tempo de espera máximo
 
-      - name: Deploy to External Resource
+      - name: Deploy to FeatureExterno Resource
         if: steps.approval.outputs.approved == 'true'
         shell: bash
         run: |
-          echo "Deploying to External Resource based on external branch strategy"
-          # Adicione os passos para o recurso externo aqui
+          echo "Deploying to FeatureExterno Resource based on FeatureExterno branch strategy"
+          # Adicione os passos para o recurso FeatureExterno aqui
 
       - name: Handle approval rejection
         if: steps.approval.outputs.approved != 'true'
         run: |
-          echo "Deployment rejected by internal team"
+          echo "Deployment rejected by FeatureInteno team"
           exit 1
