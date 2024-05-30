@@ -23,7 +23,7 @@ public class DemoApplication {
        
 	@GetMapping("/")
         public String healthCheck(){
-                return "HEALTH CHECK OK!";
+                return "HEALTH CHECK OK! NOW INTERNAL";
         }
 
 	@GetMapping("/secured")
