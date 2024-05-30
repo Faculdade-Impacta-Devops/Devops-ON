@@ -90,5 +90,5 @@ jobs:
       - name: Handle approval rejection
         if: steps.approval.outputs.approved != 'true'
         run: |
-          echo "Deployment rejected by internal team"
+          echo "Deployment "rejected" by internal team bruno"
           exit 1
