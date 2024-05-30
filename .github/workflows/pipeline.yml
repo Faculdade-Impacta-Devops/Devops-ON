@@ -61,7 +61,7 @@ jobs:
         shell: bash
         run: |
           echo "Deploying to Internal Resource based on internal branch strategy"
-          # Adicione os passos para o recurso interno aqui
+          
 
   deploy-External:
     runs-on: ubuntu-latest
@@ -85,7 +85,7 @@ jobs:
         shell: bash
         run: |
           echo "Deploying to External Resource based on external branch strategy"
-          # Adicione os passos para o recurso externo aqui
+          
 
       - name: Handle approval rejection
         if: steps.approval.outputs.approved != 'true'
