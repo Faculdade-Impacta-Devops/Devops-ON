@@ -23,7 +23,7 @@ public class DemoApplication {
        
 	@GetMapping("/")
         public String healthCheck(){
-                return "HEALTH CHECK OK!";
+                return "HEALTH CHECK OK! NOW INTERNAL";
         }
 
 	@GetMapping("/secured")
@@ -50,7 +50,7 @@ public class DemoApplication {
 	
 	@GetMapping("/devops")
 	String turma(){
-		return "DEVOPS - VERSAO 1.0";
+		return "DEVOPS - VERSAO 1.0 atualizar";
 
 	}
 }	
