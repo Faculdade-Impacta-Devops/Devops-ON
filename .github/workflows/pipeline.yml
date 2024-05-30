@@ -2,16 +2,19 @@ name: pipeline
 
 on:
   push:
-  
+    branches:
+      - develop
+      - FeatureInteno/*
+      - FeatureExterno/*
+
 jobs:
   unit-test:
     runs-on: ubuntu-latest
-    
     steps:
     - uses: actions/checkout@v4
       with:
         fetch-depth: 0
-      
+
     - run: mvn test  
     - name: Generate JaCoCo Badge
       id: jacoco
@@ -42,10 +45,50 @@ jobs:
     needs: build
     environment:
       name: stg
-      
     if: github.ref == 'refs/heads/develop'
     steps:
-      - name: Deploy 
+      - name: Deploy to STG
         shell: bash
         run: |
-          echo "Deploy STG"      
+          echo "Deploying to STG environment"
+
+  deploy-FeatureInteno:
+    runs-on: ubuntu-latest
+    needs: build
+    if: startsWith(github.ref, 'refs/heads/FeatureInteno/')
+    steps:
+      - name: Deploy to FeatureInteno Resource
+        shell: bash
+        run: |
+          echo "Deploying to FeatureInteno Resource based on FeatureInteno branch strategy"
+          # Adicione os passos para o recurso FeatureInteno aqui
+
+  deploy-FeatureExterno:
+    runs-on: ubuntu-latest
+    needs: build
+    if: startsWith(github.ref, 'refs/heads/FeatureExterno/')
+    steps:
+      - name: Notify FeatureInteno team for evaluation
+        run: |
+          echo "Notifying FeatureInteno team for evaluation of branch ${{ github.ref }}"
+          # Aqui você pode integrar com uma ferramenta de comunicação como Slack ou Email para notificação
+
+      - name: Wait for approval
+        id: approval
+        uses: peter-evans/wait-for-approval@v1
+        with:
+          approvers: user1,user2,user3  # Substitua pelos usuários que podem aprovar
+          # opcional: Adicione uma mensagem personalizada e tempo de espera máximo
+
+      - name: Deploy to FeatureExterno Resource
+        if: steps.approval.outputs.approved == 'true'
+        shell: bash
+        run: |
+          echo "Deploying to FeatureExterno Resource based on FeatureExterno branch strategy"
+          # Adicione os passos para o recurso FeatureExterno aqui
+
+      - name: Handle approval rejection
+        if: steps.approval.outputs.approved != 'true'
+        run: |
+          echo "Deployment rejected by FeatureInteno team"
+          exit 1
