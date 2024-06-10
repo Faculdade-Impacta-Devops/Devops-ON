@@ -10,10 +10,10 @@
 	</parent>
 	
 	<groupId>com.example</groupId>
-	<artifactId>devopsImpacta</artifactId>
+	<artifactId>demo</artifactId>
 	<version>0.0.2.7-SNAPSHOT</version>
 	<packaging>jar</packaging>
-	<name>devopsImpacta</name>
+	<name>demo</name>
 	<description>Demo project for Spring Boot</description>
 
 	<properties>
