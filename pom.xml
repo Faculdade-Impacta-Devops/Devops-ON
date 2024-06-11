@@ -18,7 +18,7 @@
 
 	<properties>
 		<java.version>11</java.version>
-		<sonar.organization>devopsfiap</sonar.organization>
+		<sonar.organization>devopsimpactaorg</sonar.organization>
   		<sonar.host.url>https://sonarcloud.io</sonar.host.url>
 	</properties>
 
@@ -67,7 +67,7 @@
 		<repository>
 			<id>github</id>
 			<name>GitHub Packages</name>
-			<url>https://maven.pkg.github.com/FabianoCarneiro/Devops-ON</url>
+			<url>https://maven.pkg.github.com/Faculdade-Impacta-Devops/Devops-ON</url>
 		</repository>
 	</distributionManagement>
 	<build>

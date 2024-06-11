@@ -1,0 +1,19 @@
+name: workflow for Maven using Snyk security scan
+on: push
+jobs:
+  security:
+    runs-on: ubuntu-latest    
+    permissions:
+      actions: read
+      contents: read
+      security-events: write
+    
+    steps:
+      - uses: actions/checkout@master
+      - run: chmod +x mvnw
+      - name: Run Snyk to check for vulnerabilities
+
+        uses: snyk/actions/maven@master
+        continue-on-error: true
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
