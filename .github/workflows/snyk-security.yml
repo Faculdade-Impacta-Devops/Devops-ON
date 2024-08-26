@@ -10,6 +10,10 @@ jobs:
     
     steps:
       - uses: actions/checkout@master
+     
+      - name: Snyk Code test
+        run: snyk code test --sarif > snyk-code.sarif # || true
+
       - name: Run Snyk to check for vulnerabilities
 
         uses: snyk/actions/maven@master
