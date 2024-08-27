@@ -20,7 +20,7 @@ public class ExemploVulnerabilidade {
             Statement statement = connection.createStatement();
             
             // Consulta SQL vulnerável à injeção
-            String query = "SELECT * FROM usuarios WHERE nome = '" + userInput + "'";
+            String query = "SELECT * FROM produtos WHERE nome = '" + userInput + "'";
             
             // Execução da consulta
             ResultSet resultSet = statement.executeQuery(query);
