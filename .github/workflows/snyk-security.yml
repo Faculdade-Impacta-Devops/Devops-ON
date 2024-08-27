@@ -22,7 +22,7 @@ jobs:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
     
       - name: Snyk Code test
-        run: snyk test --all-projects --org=260af689-1d5e-4d9c-9d5d-feb06192dce6
+        run: snyk test --all-projects --org=aef0364d-d779-4277-a254-86c9a1273e6c
        # run: snyk code test 
         # snyk code test --sarif > snyk-code.sarif 
         env:
