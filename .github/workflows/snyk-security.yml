@@ -22,7 +22,7 @@ jobs:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
           
       - name: Snyk Code test
-        run: snyk code test --sarif > snyk-code.sarif 
+        run: snyk code test 
         # snyk code test --sarif > snyk-code.sarif 
 
       - name: Run Snyk to check for vulnerabilities
