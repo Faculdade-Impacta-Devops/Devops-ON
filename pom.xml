@@ -18,7 +18,7 @@
 
 	<properties>
 		<java.version>11</java.version>
-		<sonar.organization>devopsimpactaorg</sonar.organization>
+		<sonar.organization>devopsfiap</sonar.organization>
   		<sonar.host.url>https://sonarcloud.io</sonar.host.url>
 	</properties>
 
