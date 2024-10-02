@@ -14,6 +14,7 @@ jobs:
       - name: Run Snyk to check for vulnerabilities
 
         uses: snyk/actions/maven@master
+        json: true
         continue-on-error: true
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
