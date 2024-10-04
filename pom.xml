@@ -80,6 +80,8 @@
 					<execution>
                         <id>pit-report</id>
                         <phase>test</phase>
+                        <id>pit-report</id>
+                        <phase>test</phase>
                         <goals>
                             <goal>mutationCoverage</goal>
                         </goals>
