@@ -78,9 +78,11 @@
 				<version>1.6.7</version>
 				<executions>
 					<execution>
-						<goals>
-							<goal>mutationCoverage</goal>
-						</goals>
+                        <id>pit-report</id>
+                        <phase>test</phase>
+                        <goals>
+                            <goal>mutationCoverage</goal>
+                        </goals>
 					</execution>
 				</executions>
         	</plugin>
