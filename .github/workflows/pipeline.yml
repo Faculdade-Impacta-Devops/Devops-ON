@@ -64,7 +64,9 @@ jobs:
         name: jacoco-report
         path: target/site/jacoco/
     - name: Mutation
-      run: mvn org.pitest:pitest-maven:mutationCoverage
+      run: |
+            mvn org.pitest:pitest-maven:mutationCoverage
+            mvn clean org.pitest:pitest-maven:mutationCoverage -X
       
   code-analisys:
     runs-on: ubuntu-latest
