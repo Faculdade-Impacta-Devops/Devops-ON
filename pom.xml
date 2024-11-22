@@ -20,6 +20,8 @@
 		<java.version>11</java.version>
 		<sonar.organization>devopsmbalearning</sonar.organization>
   		<sonar.host.url>https://sonarcloud.io</sonar.host.url>
+	        <junit.jupiter.version>5.8.1</junit.jupiter.version>
+	        <junit.platform.version>1.8.1</junit.platform.version>
 	</properties>
 
 	<dependencies>
@@ -65,15 +67,27 @@
 		<dependency>
 			<groupId>org.junit.jupiter</groupId>
 			<artifactId>junit-jupiter-api</artifactId>
-			<version>5.8.0</version>
+			<version>${junit.jupiter.version}</version>
 			<scope>test</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.junit.jupiter</groupId>
 			<artifactId>junit-jupiter-engine</artifactId>
-			<version>5.8.0</version>
+			<version>${junit.jupiter.version}</version>
 			<scope>test</scope>
 		</dependency>
+	        <dependency>
+	            <groupId>org.junit.jupiter</groupId>
+	            <artifactId>junit-jupiter-params</artifactId>
+	            <version>${junit.jupiter.version}</version>
+	            <scope>test</scope>
+	        </dependency>
+	        <dependency>
+	            <groupId>org.junit.platform</groupId>
+	            <artifactId>junit-platform-suite</artifactId>
+	            <version>${junit.platform.version}</version>
+	            <scope>test</scope>
+	        </dependency>
 		<dependency>
 			<groupId>org.pitest</groupId>
 			<artifactId>pitest-junit5-plugin</artifactId>
