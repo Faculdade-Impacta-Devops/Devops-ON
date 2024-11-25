@@ -93,6 +93,11 @@
 			<artifactId>pitest-junit5-plugin</artifactId>
 			<version>1.2.1</version>
 		</dependency>
+	       <dependency>
+			 <groupId>com.arcmutate</groupId>
+			 <artifactId>arcmutate-spring</artifactId>
+			 <version>1.0.0</version>
+	       </dependency>
 	</dependencies>
 	<distributionManagement>
 		<repository>
