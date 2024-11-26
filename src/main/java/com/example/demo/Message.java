@@ -17,3 +17,4 @@ public class Message {
     private boolean isInRange(int number) {
         return number >= MIN_VALUE && number <= MAX_VALUE;
     }
+}
