@@ -68,7 +68,11 @@ jobs:
            # mvn clean org.pitest:pitest-maven:mutationCoverage -X
             #mvn org.pitest:pitest-maven:mutationCoverage
             mvn package -Ppitest org.pitest:pitest-maven:mutationCoverage
-            
+    - name: PublishReport
+      uses: peaceiris/actions-gh-pages@v4.0.0
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./target/pit-reports
       
   code-analisys:
     runs-on: ubuntu-latest
