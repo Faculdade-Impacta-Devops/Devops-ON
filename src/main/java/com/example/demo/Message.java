@@ -1,5 +1,4 @@
-package org.example;
-
+package com.example.demo;
 
 public class Message {
 
