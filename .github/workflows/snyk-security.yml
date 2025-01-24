@@ -9,6 +9,7 @@ jobs:
       security-events: write
     steps:
       - uses: actions/checkout@master
+      - run: chmod +x mvnw
       - name: Run Snyk to check for vulnerabilities
         uses: snyk/actions/maven@master
         continue-on-error: true
