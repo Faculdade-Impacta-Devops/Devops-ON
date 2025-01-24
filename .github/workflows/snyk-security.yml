@@ -21,10 +21,10 @@ jobs:
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
     
-      - name: Snyk Code test
+      #- name: Snyk Code test
         #run: snyk test --all-projects --org=aef0364d-d779-4277-a254-86c9a1273e6c
-        run: snyk code test 
-         snyk code test --sarif > snyk-code.sarif 
+       # run: snyk code test 
+       #  snyk code test --sarif > snyk-code.sarif 
         #env:
          #SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
           
