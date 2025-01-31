@@ -6,10 +6,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @SpringBootApplication
 public class BrokenAccessControlExample {
-
-    public static void main(String[] args) {
-        SpringApplication.run(BrokenAccessControlExample.class, args);
-    }
+    // Removido o método main
 }
 
 @RestController
