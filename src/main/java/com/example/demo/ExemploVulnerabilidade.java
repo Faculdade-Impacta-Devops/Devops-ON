@@ -21,10 +21,17 @@ public class ExemploVulnerabilidade {
             
             // Consulta SQL vulnerável à injeção
             String query = "SELECT * FROM produtos WHERE nome = '" + userInput + "'";
+            String query2 = "SELECT * FROM produtos WHERE nome = '" + userInput + "'";
             
             // Execução da consulta
             ResultSet resultSet = statement.executeQuery(query);
-
+           
+            // Consulta SQL vulnerável à injeção
+            String query2 = "SELECT * FROM produtos WHERE nome = '" + userInput + "'";
+            
+            // Execução da consulta
+            ResultSet resultSet2 = statement.executeQuery(query);
+            
             // Processamento dos resultados
             while (resultSet.next()) {
                 String nome = resultSet.getString("nome");
