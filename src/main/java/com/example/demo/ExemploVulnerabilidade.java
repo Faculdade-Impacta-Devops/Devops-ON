@@ -1,4 +1,5 @@
 import java.util.Date;
+import java.util.Optional;
 
 import com.example.demo.configuration.AppUser;
 import com.example.demo.configuration.LoggedInUser;
@@ -28,8 +29,13 @@ public class ExemploVulnerabilidade {
             return;
         }
 
+        // Obter credenciais do banco de dados a partir de variáveis de ambiente
+        String dbUrl = Optional.ofNullable(System.getenv("DB_URL")).orElse("jdbc:mysql://localhost:3306/banco");
+        String dbUser = Optional.ofNullable(System.getenv("DB_USER")).orElse("usuario");
+        String dbPassword = Optional.ofNullable(System.getenv("DB_PASSWORD")).orElse("senha");
+
         // Conexão com o banco de dados (apenas para fins de exemplo)
-        try (Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/banco", "usuario", "senha")) {
+        try (Connection connection = DriverManager.getConnection(dbUrl, dbUser, dbPassword)) {
             // Consulta SQL segura usando PreparedStatement
             String query = "SELECT * FROM produtos WHERE nome = ?";
             PreparedStatement preparedStatement = connection.prepareStatement(query);
