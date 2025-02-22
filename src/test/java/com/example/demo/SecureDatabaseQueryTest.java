@@ -7,6 +7,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 import java.sql.*;
 import static org.mockito.Mockito.*;
 
+import com.exemplo.SecureDatabaseQuery;
+
 @SpringBootTest   
 public class SecureDatabaseQueryTest {
 
