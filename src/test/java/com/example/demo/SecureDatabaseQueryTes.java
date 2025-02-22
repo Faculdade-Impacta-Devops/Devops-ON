@@ -4,11 +4,11 @@ import org.junit.jupiter.api.AfterEach;
 import org.mockito.Mockito;
 import java.sql.*;
 import static org.mockito.Mockito.*;
-
+import com.example.demo.SecureDatabaseQuery; 
 package com.example.demo;
 
 
-
+@SpringBootTest   
 public class SecureDatabaseQueryTest {
 
     private Connection connection;
