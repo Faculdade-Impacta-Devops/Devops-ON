@@ -84,7 +84,7 @@ jobs:
       - uses: actions/checkout@v4.2.2
       - uses: actions/setup-java@v3
         with:
-          java-version: '17'
+          java-version: '11'
           distribution: 'adopt'
           package: '*.jar'
       - name: Publish package
