@@ -1,0 +1,17 @@
+name: Pipeline_Entrega_Impacta
+
+on:
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch: 
+
+jobs:
+  exemplo:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check
+        uses: actions/checkout@v4
+
+      - name: Chama_LogExecucao
+        run: echo "Pipeline executado com sucesso mediante a aula explicativa Impacta!"
