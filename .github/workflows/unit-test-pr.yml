@@ -7,27 +7,31 @@ on:
 
 jobs:
   unit-test:
+    name: 🧪 Testes Unitários
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
+      - name:  📥 Checkout do Código
         uses: actions/checkout@v4.2.2
         with:
           fetch-depth: 0 
 
-      - name: Run Unit Tests
-        run: mvn test
+      - name: ▶️ Rodar testes
+        run: |
+          echo "::group::Executando testes unitários"
+          mvn test
+          echo "::endgroup::"
 
-      - name: Generate JaCoCo Badge
+      - name: 📊 Gerar badge JaCoCo
         id: jacoco
         uses: cicirello/jacoco-badge-generator@v2.0.1
       
-      - name: Log coverage percentage
+      - name: 📈 Exibir cobertura
         run: |
-          echo "coverage = ${{ steps.jacoco.outputs.coverage }}"
-          echo "branch coverage = ${{ steps.jacoco.outputs.branches }}"
+          echo "Coverage = ${{ steps.jacoco.outputs.coverage }}"
+          echo "Branch Coverage = ${{ steps.jacoco.outputs.branches }}"
       
-      - name: Upload JaCoCo coverage report
+      - name: 🗃️ Upload do relatório JaCoCo
         uses: actions/upload-artifact@v4
         with:
           name: jacoco-report
