@@ -29,5 +29,4 @@ jobs:
         path: target/site/jacoco/
  
 
-        run: |
-          echo "Deploy PROD" 
+  
