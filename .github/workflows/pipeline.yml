@@ -81,7 +81,7 @@ jobs:
       - uses: actions/setup-java@v3
         with:
           java-version: '17'
-          distribution: 'adopt'
+          distribution: 'temurin'
           package: '*.jar'
       - name: Publish package
         run: mvn --batch-mode deploy
