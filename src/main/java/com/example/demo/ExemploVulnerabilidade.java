@@ -17,13 +17,9 @@ public class ExemploVulnerabilidade {
 
         // Conexão com o banco de dados (apenas para fins de exemplo)
         try (Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/banco", "usuario", "senha")) {
-            Statement statement = connection.createStatement();
-            
-            // Consulta SQL vulnerável à injeção
-            String query = "SELECT * FROM usuarios WHERE nome = '" + userInput + "'";
-            
-            // Execução da consulta
-            ResultSet resultSet = statement.executeQuery(query);
+            PreparedStatement statement = connection.prepareStatement("SELECT * FROM usuarios WHERE nome = ?");
+            statement.setString(1, userInput);
+            ResultSet resultSet = statement.executeQuery();
 
             // Processamento dos resultados
             while (resultSet.next()) {
