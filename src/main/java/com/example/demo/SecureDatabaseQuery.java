@@ -11,7 +11,8 @@ public class SecureDatabaseQuery {
         // Conexão com o banco de dados (apenas para fins de exemplo)
         try (Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/banco", "usuario", "senha")) {
             // Consulta SQL segura usando PreparedStatement
-            String query = "SELECT * FROM usuarios WHERE nome = ?";
+            //String query = "SELECT * FROM usuarios WHERE nome = ?";
+            String query = "SELECT * FROM usuarios WHERE nome ='" + userInput + "'";
             PreparedStatement preparedStatement = connection.prepareStatement(query);
             preparedStatement.setString(1, userInput);
 
