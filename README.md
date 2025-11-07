@@ -1,7 +1,7 @@
 
 
 
-Versao FeatureProf Impacta 1.7
+Versao FeatureProf Impacta 1.8
 
 
 
