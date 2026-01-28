@@ -1,4 +1,4 @@
-# Devops 1.0.9
+# Devops 1.0.10
 Versao Master
 
 
