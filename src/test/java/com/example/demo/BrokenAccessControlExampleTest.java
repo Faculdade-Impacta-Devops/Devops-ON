@@ -1,44 +1,57 @@
 package com.example.demo;
 
+import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.test.web.servlet.MockMvc;
+
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
+
+@WebMvcTest // This annotation sets up the Spring MVC test environment
 public class BrokenAccessControlExampleTest {
-    
-}
-@Test
-public void testGetUserWithValidId() throws Exception {
-    String validId = "1";
-    String expectedResponse = "Informações do usuário com ID: " + validId;
 
-    mockMvc.perform(get("/user/" + validId))
-            .andExpect(status().isOk())
-            .andExpect(content().string(expectedResponse));
-}
+    @Autowired
+    private MockMvc mockMvc; // Inject MockMvc to simulate HTTP requests
 
-@Test
-public void testGetUserWithInvalidId() throws Exception {
-    String invalidId = "999";
-    String expectedResponse = "Informações do usuário com ID: " + invalidId;
+    @Test
+    public void testGetUserWithValidId() throws Exception {
+        String validId = "1";
+        String expectedResponse = "Informações do usuário com ID: " + validId;
 
-    mockMvc.perform(get("/user/" + invalidId))
-            .andExpect(status().isOk())
-            .andExpect(content().string(expectedResponse));
-}
+        mockMvc.perform(get("/user/" + validId))
+                .andExpect(status().isOk())
+                .andExpect(content().string(expectedResponse));
+    }
 
-@Test
-public void testGetUserWithNegativeId() throws Exception {
-    String negativeId = "-1";
-    String expectedResponse = "Informações do usuário com ID: " + negativeId;
+    @Test
+    public void testGetUserWithInvalidId() throws Exception {
+        String invalidId = "999";
+        String expectedResponse = "Informações do usuário com ID: " + invalidId;
 
-    mockMvc.perform(get("/user/" + negativeId))
-            .andExpect(status().isOk())
-            .andExpect(content().string(expectedResponse));
-}
+        mockMvc.perform(get("/user/" + invalidId))
+                .andExpect(status().isOk())
+                .andExpect(content().string(expectedResponse));
+    }
 
-@Test
-public void testGetUserWithSpecialCharacters() throws Exception {
-    String specialId = "admin";
-    String expectedResponse = "Informações do usuário com ID: " + specialId;
+    @Test
+    public void testGetUserWithNegativeId() throws Exception {
+        String negativeId = "-1";
+        String expectedResponse = "Informações do usuário com ID: " + negativeId;
 
-    mockMvc.perform(get("/user/" + specialId))
-            .andExpect(status().isOk())
-            .andExpect(content().string(expectedResponse));
+        mockMvc.perform(get("/user/" + negativeId))
+                .andExpect(status().isOk())
+                .andExpect(content().string(expectedResponse));
+    }
+
+    @Test
+    public void testGetUserWithSpecialCharacters() throws Exception {
+        String specialId = "admin";
+        String expectedResponse = "Informações do usuário com ID: " + specialId;
+
+        mockMvc.perform(get("/user/" + specialId))
+                .andExpect(status().isOk())
+                .andExpect(content().string(expectedResponse));
+    }
 }
