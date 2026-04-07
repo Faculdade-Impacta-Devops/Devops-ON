@@ -1,4 +1,3 @@
-
 name: pipeline
 
 on:
@@ -16,20 +15,57 @@ jobs:
     - run: mvn test  
     - name: Generate JaCoCo Badge
       id: jacoco
-      uses: cicirello/jacoco-badge-generator@v2.0.1
+      uses: cicirello/jacoco-badge-generator@v2.12.1
     - name: Log coverage percentage
       run: |
         echo "coverage = ${{ steps.jacoco.outputs.coverage }}"
         echo "branch coverage = ${{ steps.jacoco.outputs.branches }}"    
     - name: Upload JaCoCo coverage report
+
       uses: actions/upload-artifact@v4.4.0
+
       with:
         name: jacoco-report
         path: target/site/jacoco/
-        
+  
+  security:
+    runs-on: ubuntu-latest   
+    needs: unit-test 
+    permissions:
+      actions: read
+      contents: read
+      security-events: write
+    
+    steps:
+      - uses: actions/checkout@master
+          
+      - name: Set up Snyk CLI to check for security issues
+        uses: snyk/actions/setup@806182742461562b67788a64410098c9d9b96adb
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+      - name: auth
+        run: snyk auth ${{ secrets.SNYK_TOKEN }}
+      
+      - name: Snyk Code test
+        #run: snyk test --all-projects --org=aef0364d-d779-4277-a254-86c9a1273e6c
+        run: snyk code test 
+          
+      - name: Run Snyk to check for vulnerabilities
+        uses: snyk/actions/maven@master
+        continue-on-error: true
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+        with:
+          args: --sarif-file-output=snyk.sarif --severity-threshold=high
+          
+      - name: Upload result to GitHub Code Scanning
+        uses: github/codeql-action/upload-sarif@v3
+        with:
+          sarif_file: snyk.sarif
+
   code-analisys:
     runs-on: ubuntu-latest
-    needs: unit-test
+    needs:  unit-test 
     
     steps:
     - uses: actions/checkout@v4.2.2
@@ -41,14 +77,18 @@ jobs:
         java-version: 11
         
     - name: Cache SonarCloud packages
+
       uses: actions/cache@v4.2.3
+
       with:
         path: ~/.sonar/cache
         key: ${{ runner.os }}-sonar
         restore-keys: ${{ runner.os }}-sonar
         
     - name: Cache Maven packages
+
       uses: actions/cache@v4.2.3
+
       with:
         path: ~/.m2
         key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
@@ -58,8 +98,10 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
 
+
         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN_IMPACTA }}
       run: mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.qualitygate.wait=true -Dsonar.projectKey=Devops-Fiap-ON
+
 
 
 
