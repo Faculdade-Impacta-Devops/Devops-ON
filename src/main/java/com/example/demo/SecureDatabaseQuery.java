@@ -1,25 +1,23 @@
-import java.util.Date;
 
-import com.example.demo.configuration.AppUser;
-import com.example.demo.configuration.LoggedInUser;
-
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+package com.example.demo;
 
 import java.sql.*;
-public class ExemploVulnerabilidade {
+
+public class SecureDatabaseQuery {
 
     public static void main(String[] args) {
         String userInput = args[0]; // Supondo que userInput seja a entrada do usuário
 
         // Conexão com o banco de dados (apenas para fins de exemplo)
         try (Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/banco", "usuario", "senha")) {
-            PreparedStatement statement = connection.prepareStatement("SELECT * FROM usuarios WHERE nome = ?");
-            statement.setString(1, userInput);
-            ResultSet resultSet = statement.executeQuery();
+            // Consulta SQL segura usando PreparedStatement
+            //String query = "SELECT * FROM usuarios WHERE nome = ?";
+            String query = "SELECT * FROM usuarios WHERE nome ='" + userInput + "'";
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setString(1, userInput);
+
+            // Execução da consulta
+            ResultSet resultSet = preparedStatement.executeQuery();
 
             // Processamento dos resultados
             while (resultSet.next()) {
