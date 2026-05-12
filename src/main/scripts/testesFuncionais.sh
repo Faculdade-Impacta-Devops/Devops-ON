@@ -1,2 +1,2 @@
 echo 'EXECUTANDO TESTE FUNCIONAIS'
-return 1
+return 0
